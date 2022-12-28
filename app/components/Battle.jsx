@@ -84,6 +84,12 @@ function PlayerPreview({ username, onReset, label }) {
     </article>
   );
 }
+
+PlayerPreview.proptypes = {
+    username: PropTypes.string.isRequired,
+    onReset: PropTypes.func.isRequired,
+    label: PropTypes.string.isRequired
+}
 const Battle = () => {
   const [players, setPlayers] = useState({ playerOne: null, playerTwo: null });
   const { playerOne, playerTwo } = players;
