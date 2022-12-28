@@ -8,22 +8,17 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Nav from "./components/Nav";
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
+  state = {
+    theme: "light",
+  };
 
-    this.state = {
-      theme: "light",
-    };
-    this.toogleTheme = this.toogleTheme.bind(this);
-  }
-
-  toogleTheme() {
+  toogleTheme = () => {
     this.setState(({ theme }) => {
       return {
         theme: theme === "light" ? "dark" : "light",
       };
     });
-  }
+  };
   render() {
     return (
       <Router>
@@ -32,9 +27,8 @@ class App extends React.Component {
             <Nav theme={this.state.theme} toogleTheme={this.toogleTheme} />
             <Routes>
               <Route path="/" element={<Popular />} />
-                        <Route path="/battle" element={<Battle />} />
-                        <Route path="/results" element={<Results />} />
-              
+              <Route path="/battle" element={<Battle />} />
+              <Route path="/results" element={<Results />} />
             </Routes>
           </div>
         </div>

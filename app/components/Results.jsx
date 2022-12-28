@@ -68,19 +68,16 @@ Card.propTypes = {
 };
 
 class Results extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      winner: null,
-      loser: null,
-      error: null,
-      loading: true,
-    };
-  }
+  state = {
+    winner: null,
+    loser: null,
+    error: null,
+    loading: true,
+  };
   componentDidMount() {
     const sp = this.props.router.searchParams;
-    const playerOne = sp.get("playerOne")
-    const playerTwo = sp.get("playerTwo")
+    const playerOne = sp.get("playerOne");
+    const playerTwo = sp.get("playerTwo");
 
     battle([playerOne, playerTwo])
       .then((players) => {
@@ -101,7 +98,7 @@ class Results extends React.Component {
   render() {
     const { winner, loser, error, loading } = this.state;
     if (loading) {
-      return <Loading text="Batteling" />
+      return <Loading text="Batteling" />;
     }
     if (error) {
       return <p className="text-center error">{error}</p>;
@@ -110,7 +107,9 @@ class Results extends React.Component {
       <main className="animate-in stack main-stack">
         <div className="split">
           <h1>Results</h1>
-          <Link to="/battle" className="btn secondary">Reset</Link>
+          <Link to="/battle" className="btn secondary">
+            Reset
+          </Link>
         </div>
         <section className="grid">
           <article className="results-container">
@@ -144,4 +143,4 @@ class Results extends React.Component {
   }
 }
 
-export default withSearchParams(Results)
+export default withSearchParams(Results);
