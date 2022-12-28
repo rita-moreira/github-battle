@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from "react";
 import PropTypes from "prop-types";
 import { close } from "./icons";
+import Results from "./Results";
 
 function Instructions() {
   return (
@@ -60,7 +61,6 @@ PlayerInput.propTypes = {
 };
 
 function PlayerPreview({ username, onReset, label }) {
-    console.log(`https://github.com/${username}.png?size=200`)
   return (
     <article className="card">
       <h3 className="player-label">{label}</h3>
@@ -69,7 +69,7 @@ function PlayerPreview({ username, onReset, label }) {
           <img
             width={32}
             height={32}
-            className={'avatar'}
+            className={"avatar"}
             src={`https://github.com/${username}.png?size=200`}
             alt={`Avatar for ${username}`}
           />
@@ -86,12 +86,13 @@ function PlayerPreview({ username, onReset, label }) {
 }
 
 PlayerPreview.proptypes = {
-    username: PropTypes.string.isRequired,
-    onReset: PropTypes.func.isRequired,
-    label: PropTypes.string.isRequired
-}
+  username: PropTypes.string.isRequired,
+  onReset: PropTypes.func.isRequired,
+  label: PropTypes.string.isRequired,
+};
 const Battle = () => {
   const [players, setPlayers] = useState({ playerOne: null, playerTwo: null });
+  const [battle, setBattle] = useState(false);
   const { playerOne, playerTwo } = players;
   const disabled = !playerOne || !playerTwo;
 
@@ -119,11 +120,18 @@ const Battle = () => {
     [setPlayers]
     );
     
+  if (battle) {
+    return <Results playerOne={playerOne} playerTwo={playerTwo} />;
+  }
+
   return (
     <main className="stack main-stack animate-in">
       <div className="split">
         <h1>Players</h1>
-        <button className={`btn primary ${disabled ? "disabled" : ""}`}>
+        <button
+          onClick={() => setBattle(true)}
+          className={`btn primary ${disabled ? "disabled" : ""}`}
+        >
           Battle
         </button>
       </div>
