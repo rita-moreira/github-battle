@@ -9,6 +9,36 @@ const styles = {
   marginTop: "20px",
   textAlign: "center",
 };
+
+class Delayed extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      show: false,
+    };
+  }
+  componentDidMount() {
+    this.timeout = window.setTimeout(() => {
+      this.setState({ show: true });
+    }, this.props.wait);
+  }
+  componentWillUnmount() {
+    window.clearTimeout(this.timeout);
+  }
+  render() {
+    return this.state.show ? this.props.children : null;
+  }
+}
+
+Delayed.defaultProps = {
+  wait: 1000,
+};
+Delayed.propTypes = {
+  children: PropTypes.node.isRequired,
+  wait: PropTypes.number.isRequired,
+};
+
 export default class Loading extends React.Component {
   constructor(props) {
     super(props);
@@ -31,7 +61,11 @@ export default class Loading extends React.Component {
   }
 
   render() {
-    return <p style={styles}>{this.state.content}</p>;
+    return (
+      <Delayed>
+        <p style={styles}>{this.state.content}</p>
+      </Delayed>
+    );
   }
 }
 
@@ -41,6 +75,6 @@ Loading.propTypes = {
 };
 
 Loading.defaultProps = {
-    text: 'Loading',
-    speed: 300,
-}
+  text: "Loading",
+  speed: 300,
+};
