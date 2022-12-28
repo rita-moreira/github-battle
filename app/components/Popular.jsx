@@ -9,7 +9,7 @@ function LanguageNav({ selected, onUpdateLanguage }) {
   return (
     <select
       onChange={(e) => onUpdateLanguage(e.target.value)}
-      selected={selected}
+          selected={selected}
     >
       {languages.map((l) => (
         <option key={l} value={l}>
@@ -59,7 +59,8 @@ export default class Popular extends React.Component {
     return (
       <main className="stack main-stack animate-in">
         <div className="split">
-          <h1>Popular</h1>
+                <h1>Popular</h1>
+                
           <LanguageNav
             selected={selectedLanguage}
             onUpdateLanguage={this.updateLanguage}
