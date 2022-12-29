@@ -64,6 +64,7 @@ Card.propTypes = {
     repositories: PropTypes.number,
     location: PropTypes.string,
     company: PropTypes.string,
+    public_repos: PropTypes.number,
   }).isRequired,
 };
 
@@ -142,5 +143,9 @@ class Results extends React.Component {
     );
   }
 }
+
+Results.propTypes = {
+  router: PropTypes.any,
+};
 
 export default withSearchParams(Results);

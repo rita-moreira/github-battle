@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import PropTypes from "prop-types";
-import { close } from "./icons";
 import { Link } from "react-router-dom";
+import { close } from "./icons";
 
 function Instructions() {
   return (
@@ -19,12 +19,9 @@ function Instructions() {
 function PlayerInput({ label, onSubmit }) {
   const [username, setUsername] = useState("");
 
-  const handleChange = useCallback(
-    (e) => {
-      setUsername(e.target.value);
-    },
-    [setUsername]
-  );
+  const handleChange = useCallback((e) => {
+    setUsername(e.target.value);
+  }, []);
 
   const handleSubmit = useCallback(
     (e) => {
@@ -69,14 +66,18 @@ function PlayerPreview({ username, onReset, label }) {
           <img
             width={32}
             height={32}
-            className={"avatar"}
+            className="avatar"
             src={`https://github.com/${username}.png?size=200`}
             alt={`Avatar for ${username}`}
           />
           <a href={`https://github.com/${username}`} className="link">
             {username}
           </a>
-          <button onClick={onReset} className="btn secondary icon">
+          <button
+            type="button"
+            onClick={onReset}
+            className="btn secondary icon"
+          >
             {close}
           </button>
         </div>
@@ -85,7 +86,7 @@ function PlayerPreview({ username, onReset, label }) {
   );
 }
 
-PlayerPreview.proptypes = {
+PlayerPreview.propTypes = {
   username: PropTypes.string.isRequired,
   onReset: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,
@@ -97,28 +98,23 @@ const Battle = () => {
 
   const handleSubmit = useCallback(
     (id, player) => {
-      setPlayers((prev) => {
-        return {
-          ...prev,
-          [id]: player,
-        };
-      });
+      setPlayers((prev) => ({
+        ...prev,
+        [id]: player,
+      }));
     },
     [setPlayers]
   );
 
   const handleReset = useCallback(
     (id) => {
-      setPlayers((prev) => {
-        return {
-          ...prev,
-          [id]: null,
-        };
-      });
+      setPlayers((prev) => ({
+        ...prev,
+        [id]: null,
+      }));
     },
     [setPlayers]
-    );
-    
+  );
 
   return (
     <main className="stack main-stack animate-in">
@@ -126,8 +122,8 @@ const Battle = () => {
         <h1>Players</h1>
         <Link
           to={{
-            pathname: '/results',
-            search: `?playerOne=${playerOne}&playerTwo=${playerTwo}`
+            pathname: "/results",
+            search: `?playerOne=${playerOne}&playerTwo=${playerTwo}`,
           }}
           className={`btn primary ${disabled ? "disabled" : ""}`}
         >

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { NavLink } from "react-router-dom";
 import { sunIcon, moonIcon } from "./icons";
+import PropTypes from "prop-types";
 
 export default function Nav({ theme, toogleTheme }) {
   return (
@@ -41,3 +42,8 @@ export default function Nav({ theme, toogleTheme }) {
     </nav>
   );
 }
+
+Nav.propTypes = {
+  theme: PropTypes.string.isRequired,
+  toogleTheme: PropTypes.func.isRequired,
+};

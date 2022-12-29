@@ -47,32 +47,31 @@ export function getRepos(username) {
 }
 
 function getStartCount(repos) {
-    return repos.reduce((count, { stargazers_count }) => {
-        return count + stargazers_count
-    }, 0)
+  // eslint-disable-next-line camelcase
+  return repos.reduce(
+    (count, { stargazers_count }) => count + stargazers_count,
+    0
+  );
 }
 function calculateScore(followers, repos) {
-    return followers * 3 + getStartCount(repos)
+  return followers * 3 + getStartCount(repos);
 }
 
 function getUserData(player) {
-    return Promise.all([
-        getProfile(player), getRepos(player)
-    ]).then(([profile, repos]) => {
-        return {
-            profile,
-            score: calculateScore(profile.followers, repos),
-        }
+  return Promise.all([getProfile(player), getRepos(player)]).then(
+    ([profile, repos]) => ({
+      profile,
+      score: calculateScore(profile.followers, repos),
     })
+  );
 }
 
 function sortPlayers(players) {
-    return players.sort((a, b) => b.score - a.score)
+  return players.sort((a, b) => b.score - a.score);
 }
 
 export function battle(players) {
-    return Promise.all([
-        getUserData(players[0]),
-        getUserData(players[1])
-    ]).then(sortPlayers)
+  return Promise.all([getUserData(players[0]), getUserData(players[1])]).then(
+    sortPlayers
+  );
 }

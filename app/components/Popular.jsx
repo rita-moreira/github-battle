@@ -9,7 +9,7 @@ function LanguageNav({ selected, onUpdateLanguage }) {
   return (
     <select
       onChange={(e) => onUpdateLanguage(e.target.value)}
-          selected={selected}
+      selected={selected}
     >
       {languages.map((l) => (
         <option key={l} value={l}>
@@ -26,10 +26,10 @@ LanguageNav.propTypes = {
 };
 export default class Popular extends React.Component {
   state = {
-      selectedLanguage: "All",
-      repos: null,
-      error: null,
-    };
+    selectedLanguage: "All",
+    repos: null,
+    error: null,
+  };
 
   componentDidMount() {
     this.updateLanguage(this.state.selectedLanguage);
@@ -46,16 +46,18 @@ export default class Popular extends React.Component {
       )
       .catch((error) => {
         console.warn("Error fetching repo: ", error);
-        this.setState({ error: `There was an error fetching the repositories` });
+        this.setState({
+          error: `There was an error fetching the repositories`,
+        });
       });
-  }
+  };
   render() {
     const { selectedLanguage, repos, error } = this.state;
     return (
       <main className="stack main-stack animate-in">
         <div className="split">
-                <h1>Popular</h1>
-                
+          <h1>Popular</h1>
+
           <LanguageNav
             selected={selectedLanguage}
             onUpdateLanguage={this.updateLanguage}

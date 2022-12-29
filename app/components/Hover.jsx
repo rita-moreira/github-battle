@@ -1,4 +1,5 @@
 import * as React from "react";
+import PropTypes from "prop-types";
 
 export default class Hover extends React.Component {
   state = {
@@ -20,3 +21,7 @@ export default class Hover extends React.Component {
     );
   }
 }
+
+Hover.propTypes = {
+  children: PropTypes.node.isRequired,
+};
