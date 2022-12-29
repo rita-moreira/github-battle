@@ -9,7 +9,7 @@ export default class Hover extends React.Component {
   mouseOver = () => {
     this.setState({ hovering: true });
   };
-  mouseOu = () => {
+  mouseOut = () => {
     this.setState({ hovering: false });
   };
 

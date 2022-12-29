@@ -10,7 +10,7 @@ function MoreInfo({
   updated_at,
   watchers,
   login,
-  type,
+  type
 }) {
   return (
     <ul className="tooltip stack">
@@ -55,7 +55,7 @@ MoreInfo.propTypes = {
   updated_at: PropTypes.string.isRequired,
   watchers: PropTypes.number.isRequired,
   type: PropTypes.string.isRequired,
-  login: PropTypes.string.isRequired,
+  login: PropTypes.string.isRequired
 };
 function TableHead() {
   return (
@@ -81,7 +81,7 @@ function TableRow({
   created_at,
   updated_at,
   language,
-  watchers,
+  watchers
 }) {
   const { login, avatar_url, type } = owner;
   return (
@@ -129,7 +129,7 @@ TableRow.propTypes = {
   created_at: PropTypes.string.isRequired,
   updated_at: PropTypes.string.isRequired,
   watchers: PropTypes.number.isRequired,
-  language: PropTypes.string,
+  language: PropTypes.string
 };
 export default function Table({ repos }) {
   return (
@@ -145,5 +145,5 @@ export default function Table({ repos }) {
 }
 
 Table.propTypes = {
-  repos: PropTypes.array.isRequired,
+  repos: PropTypes.array.isRequired
 };
