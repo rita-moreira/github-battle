@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 export default class Hover extends React.Component {
   state = {
-    hovering: false,
+    hovering: false
   };
 
   mouseOver = () => {
@@ -23,5 +23,5 @@ export default class Hover extends React.Component {
 }
 
 Hover.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.func.isRequired
 };
